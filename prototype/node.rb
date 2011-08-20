@@ -14,7 +14,7 @@ class Link < Node
   end
 
   def to_s
-    "Link depth:#{@depth}, dest:#{@dest}, tmp:#{@tmp}"
+    "(Link depth:#{@depth}, dest:#{@dest}, tmp:#{@tmp})"
   end   
 
   def to_desc
@@ -34,7 +34,7 @@ class Tag < Node
   end
 
   def to_s
-    "Tag depth:#{@depth}, tag:#{@tag}, text:#{@text}, tmp:#{@tmp}"
+    "(Tag depth:#{@depth}, tag:#{@tag}, text:#{@text}, tmp:#{@tmp})"
   end  
 
   def to_csv
@@ -53,7 +53,7 @@ class Text < Node
   end
 
   def to_s
-    "Text depth:#{@depth}, text:#{@text}, tmp:#{@tmp}"
+    "(Text depth:#{@depth}, text:#{@text}, tmp:#{@tmp})"
   end   
 
   def to_csv

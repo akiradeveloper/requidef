@@ -5,6 +5,10 @@ class Tree
     @parents = []
   end
 
+  def values
+    @values
+  end
+
   def size
     @values.size
   end

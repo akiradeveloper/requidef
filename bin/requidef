@@ -1,0 +1,48 @@
+#!ruby
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
+require "requidef"
+require "optparse"
+
+def mk_dot(input, output)
+  f = File.new(output, "w")
+  f.write( dot(input) )
+  f.close
+end
+
+def mk_csv(input, output)
+  f = File.new(output, "w")
+  f.write( csv(input) )
+  f.close
+end
+
+def ext_of(name)
+  File.extname(name)
+end
+
+if __FILE__ == $0
+  opt = OptionParser.new
+
+  output = nil
+  opt.on("-o VAL") do |v| 
+    output = v
+  end
+
+  input = nil
+  opt.on("-i VAL") do |v|
+    input = v
+  end
+  opt.parse!(ARGV)
+
+  ext = ext_of(output)
+
+  case ext
+  when ".dot"
+    mk_dot(input, output)
+  when ".csv"
+    mk_csv(input, output)
+  else
+    raise "no match on file extension"
+  end
+end
