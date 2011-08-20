@@ -5,43 +5,33 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require "requidef"
 require "optparse"
 
-def mk_dot(input, output)
-  f = File.new(output, "w")
-  f.write( dot(input) )
-  f.close
+def print_dot(input)
+  print dot(input)
 end
 
-def mk_csv(input, output)
-  f = File.new(output, "w")
-  f.write( csv(input) )
-  f.close
-end
-
-def ext_of(name)
-  File.extname(name)
+def print_csv(input)
+  print csv(input)
 end
 
 if __FILE__ == $0
   opt = OptionParser.new
 
-  output = nil
-  opt.on("-o VAL") do |v| 
-    output = v
+  type = nil
+  opt.on("-t VAL") do |v| 
+    type = v
   end
 
   input = nil
-  opt.on("-i VAL") do |v|
+  opt.on("-f VAL") do |v|
     input = v
   end
   opt.parse!(ARGV)
 
-  ext = ext_of(output)
-
-  case ext
-  when ".dot"
-    mk_dot(input, output)
-  when ".csv"
-    mk_csv(input, output)
+  case type 
+  when "dot"
+    print_dot(input)
+  when "csv"
+    print_csv(input)
   else
     raise "no match on file extension"
   end

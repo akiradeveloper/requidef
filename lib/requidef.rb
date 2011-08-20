@@ -1,6 +1,6 @@
+require_relative "nodetree"
 require_relative "rd2nodes"
 require_relative "nodes2tree"
-require_relative "nodetree"
 
 def rd2tree(file)
   nodes2tree( rd2nodes(file) )
