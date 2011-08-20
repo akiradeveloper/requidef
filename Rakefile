@@ -17,11 +17,15 @@ Jeweler::Tasks.new do |gem|
   gem.name = "requidef"
   gem.homepage = "http://github.com/akiradeveloper/requidef"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Requiem for your Requirement Definition}
+  gem.description = %Q{Which do you use for your requirement definition job? MS Excel? MS Word? Uninstall them. Because you will get a better solution.}
   gem.email = "ruby.wktk@gmail.com"
   gem.authors = ["Akira Hayakawa"]
   # dependencies defined in Gemfile
+
+  gem.files( FileList.new("lib/**/.rb") )
+  gem.executables = ["bin/requidef"]
+  gem.default_executables = "bin/requidef"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 

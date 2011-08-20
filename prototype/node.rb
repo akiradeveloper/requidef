@@ -4,6 +4,7 @@ class Node
     @tmp = {}
   end
   attr_reader :tmp ,:depth
+  attr_accessor :id
 end
 
 class Link < Node
@@ -15,6 +16,14 @@ class Link < Node
   def to_s
     "Link depth:#{@depth}, dest:#{@dest}, tmp:#{@tmp}"
   end   
+
+  def to_desc
+    ""
+  end
+
+  def to_csv
+    ""
+  end
 end
 
 class Tag < Node
@@ -23,9 +32,18 @@ class Tag < Node
     @tag = tag
     @text = text
   end
+
   def to_s
     "Tag depth:#{@depth}, tag:#{@tag}, text:#{@text}, tmp:#{@tmp}"
   end  
+
+  def to_csv
+    @text
+  end
+
+  def to_desc
+    @text
+  end
 end
 
 class Text < Node
@@ -33,9 +51,18 @@ class Text < Node
     super(depth)
     @text = text
   end
+
   def to_s
     "Text depth:#{@depth}, text:#{@text}, tmp:#{@tmp}"
   end   
+
+  def to_csv
+    @text
+  end
+
+  def to_desc
+    @text
+  end
 end
 
 if __FILE__ == $0

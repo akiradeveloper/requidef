@@ -4,9 +4,11 @@ class Tree
     @edges = []
     @parents = []
   end
+
   def size
     @values.size
   end
+
   def root_id
     0
   end
@@ -14,6 +16,7 @@ class Tree
   def value(id)
     @values[id]
   end
+
   def children(id)
     @edges[id]
   end
@@ -21,13 +24,16 @@ class Tree
   def add_node(id, value)
     @values[id] = value 
   end
+
   def add_edge(from, to)
     register_edge(from, to)
     register_parent(to, from)
   end
+
   def leaf?(id)
     @edges[id] == nil
   end
+
   def branch?(id)
     ! leaf?(id)
   end
@@ -45,6 +51,7 @@ private
     @parents[from] = to  
   end
 end
+
 if __FILE__ == $0
   t = Tree.new
   t.add_node(0, "a")
@@ -63,5 +70,3 @@ if __FILE__ == $0
     puts "children:#{t.children(i)}"
   end
 end
-
-

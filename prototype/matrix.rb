@@ -1,28 +1,28 @@
 class Matrix
   def initialize()
     @mat = []
-    @m = 0
-  end
-
-  def m_size
-    @m
+    @n = 0
   end
 
   def n_size
+    @n
+  end
+
+  def m_size
     @mat.size
   end
 
   def set(at, value)
     expand(at)
-    n = at[0]
-    m = at[1]
-    @mat[n][m] = value
+    i = at[0]
+    j = at[1]
+    @mat[i][j] = value
   end
   
   def get(at)
-    n = at[0]
-    m = at[1]
-    @mat[n][m]
+    i = at[0]
+    j = at[1]
+    @mat[i][j]
   end
 
   def to_s
@@ -35,8 +35,8 @@ class Matrix
 private 
 
   def expand(by)
-    _n_size = by[0] + 1
-    _m_size = by[1] + 1
+    _m_size = by[0] + 1
+    _n_size = by[1] + 1
 
     if _m_size > m_size
       expand_m(_m_size)
@@ -45,22 +45,23 @@ private
     if _n_size > n_size
       expand_n(_n_size)
     end
-  end
 
-  def expand_n(to)
-    (to-n_size).times do
-      @mat << Array.new(m_size)
-    end
   end
 
   def expand_m(to)
+    (to-m_size).times do
+      @mat << Array.new(n_size)
+    end
+  end
+
+  def expand_n(to)
     @mat.each do |x|
-      m = x.size
-      (to-m).times do
+      n = x.size
+      (to-n).times do
         x << nil
       end
     end
-    @m = to
+    @n = to
   end
 end
 
