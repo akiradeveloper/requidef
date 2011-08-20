@@ -29,16 +29,28 @@ private
        
     for i in 0...children_id.size
       child_id = children_id[i]
-      p @array
-      @array[child_id][0] = @array[id][0] + @array[id][1]
-      p @array
+      a = @array[id][0] + @array[id][1]
+      # @array[child_id][0] = @array[id][0] + @array[id][1]
+      @array[child_id] = [a, @array[child_id][1]]
       set_row_of_nodes(child_id)
-      @array[id][1] += @array[child_id][1]
+      # @array[id][1] += @array[child_id][1]
+      b = @array[id][1] + @array[child_id][1]
+      @array[id] = [@array[id][0], b]
     end
   end
 end
 
 if __FILE__ == $0
+  # test ------------------
+  a = [[1,1], [2,2]]
+  a[0][0] = a[0][0] + a[0][1]
+  p a #=> no problem.
+
+  # NOTE: 
+  # The problem occured above related to
+  # Array on recursion.
+  # -----------------------
+
   t = Tree.new
   t.add_node(0, nil)
   t.add_node(1, nil)
