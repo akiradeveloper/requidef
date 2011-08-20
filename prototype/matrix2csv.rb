@@ -2,13 +2,13 @@ require_relative "matrix"
 
 def matrix2csv(matrix, &writer)
   s = ""
-  for i in 0...matrix.n_size   
+  for i in 0...matrix.m_size   
     ms = []
-    for j in 0...matrix.m_size
+    for j in 0...matrix.n_size
       ms[j] = writer.call matrix.get([i,j])
     end
     s += ms.join ","
-    s += "\n" unless i == matrix.n_size - 1
+    s += "\n" unless i == matrix.m_size - 1
   end
   s
 end

@@ -13,6 +13,20 @@ class Tree
     @values.size
   end
 
+  def parent(id)
+    @parents[id]
+  end
+
+  def depth(id)
+    d = 0
+    i = id
+    until( i==root_id )
+      i = parent(i)
+      d += 1
+    end
+    d
+  end
+
   def root_id
     0
   end
@@ -69,8 +83,11 @@ if __FILE__ == $0
     puts "value:#{t.value(i)}"
     puts "leaf?:#{t.leaf?(i)}"
     puts "branch?:#{t.branch?(i)}"
+    puts "depth:#{t.depth(i)}"
   end
   [0,1].each do |i|
     puts "children:#{t.children(i)}"
   end
+
+  
 end

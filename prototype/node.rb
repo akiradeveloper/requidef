@@ -12,6 +12,7 @@ class Link < Node
     super(depth)
     @dest = dest
   end
+  attr_reader :dest
 
   def to_s
     "(Link depth:#{@depth}, dest:#{@dest}, tmp:#{@tmp})"
@@ -32,6 +33,7 @@ class Tag < Node
     @tag = tag
     @text = text
   end
+  attr_reader :tag
 
   def to_s
     "(Tag depth:#{@depth}, tag:#{@tag}, text:#{@text}, tmp:#{@tmp})"
