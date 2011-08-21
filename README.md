@@ -15,10 +15,6 @@ Only for Ruby >= 1.9
 
 gem install requidef
 
-or 
-
-git clone $(this repo) and add path to the bin dir.
-
 ## Recent Releases
 - 0.1.0
 -- The consequence of 10 hours rapid developement.

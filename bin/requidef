@@ -1,5 +1,3 @@
-#!ruby
-
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require "requidef"
@@ -13,26 +11,25 @@ def print_csv(input)
   print csv(input)
 end
 
-if __FILE__ == $0
-  opt = OptionParser.new
+# Main 
+opt = OptionParser.new
 
-  type = nil
-  opt.on("-t VAL") do |v| 
-    type = v
-  end
+type = nil
+opt.on("-t VAL") do |v| 
+  type = v
+end
 
-  input = nil
-  opt.on("-f VAL") do |v|
-    input = v
-  end
-  opt.parse!(ARGV)
+input = nil
+opt.on("-f VAL") do |v|
+  input = v
+end
+opt.parse!(ARGV)
 
-  case type 
-  when "dot"
-    print_dot(input)
-  when "csv"
-    print_csv(input)
-  else
-    raise "no match on file extension"
-  end
+case type 
+when "dot"
+  print_dot(input)
+when "csv"
+  print_csv(input)
+else
+  raise "no match on type"
 end
