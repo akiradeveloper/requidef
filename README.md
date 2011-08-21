@@ -1,11 +1,33 @@
 # requidef
+Requiem for the Requirement Definitions.
 
 ## Motivation
+Do you know the most and the last thing that hinder our technology grow rapidly in this century?
+The most harmful software, you know that is the MS Office.
+We, workers, are forced to write lenghty documents with MS Word, MS Excel ... you know what.
+I disrespect every single of the softwares MS provides.
+Today, we declared to be free from these greedy evils.
+
+This software, requidef, will guide you to the haven where any documentation works are happy.
 
 ## Installation
+Only for Ruby >= 1.9
+
+gem install requidef
+
+or 
+
+git clone $(this repo) and add path to the bin dir.
+
+## Recent Releases
+- 0.1.0
+-- The consequence of 10 hours rapid developement.
+- Next : 0.2.0
+-- Bug fix. Already found 3 
+-- impl : tree -> rd
+-- impl : http -> tree 
 
 ## Contributing to requidef
- 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
@@ -15,7 +37,5 @@
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
 ## Copyright
-
-Copyright (c) 2011 Akira Hayakawa. See LICENSE.txt for
+Copyright (c) 2011 Akira Hayakawa (@akiradeveloper). See LICENSE.txt for
 further details.
-

@@ -23,7 +23,7 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["Akira Hayakawa"]
   # dependencies defined in Gemfile
 
-  gem.files = FileList["lib/**/.rb"]
+  gem.files = FileList["lib/**/*.rb"]
   gem.executables << "requidef"
   # gem.default_executables = "bin/requidef"
 end
