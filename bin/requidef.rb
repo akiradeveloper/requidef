@@ -15,12 +15,12 @@ end
 opt = OptionParser.new
 
 type = nil
-opt.on("-t VAL") do |v| 
+opt.on("-t", "--type=VAL") do |v| 
   type = v
 end
 
 input = nil
-opt.on("-f VAL") do |v|
+opt.on("-f", "--file=VAL") do |v|
   input = v
 end
 opt.parse!(ARGV)

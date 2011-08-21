@@ -1,7 +1,7 @@
 sample : dot_sample csv_sample
 
 dot_sample :
-	requidef -t dot -f sample.rd > sample.dot
+	requidef --type=dot --file=sample.rd > sample.dot
 	dot -Tjpg sample.dot -o sample.jpg
 
 csv_sample :
