@@ -7,8 +7,6 @@ class Tree
   def to_csv 
     m = tree2matrix(self)
 
-    # TODO: Link node write the tag it links to.
-    # Maybe, let Node has ID so we can reach the parent.
     c = matrix2csv(m) do |n|
       s = nil
       if n == nil
@@ -43,8 +41,12 @@ class Tree
         elems << dot_edge_desc(i, child) unless link_node?(child)
       end
     end
+    
+    # NOTE: The ratio of the output figure is 1 at default.
+    # I/F to change the ratio is the future work.
 """
 digraph graphname {
+  graph [ratio = 1]
   #{elems.join("\n  ")}
 }
 """

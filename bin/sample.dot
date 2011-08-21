@@ -1,0 +1,16 @@
+
+digraph graphname {
+  graph [ratio = 1]
+  v0 [label="Root"];
+  v1 [label="a"];
+  v2 [label="b"];
+  v3 [label="c"];
+  v4 [label="d"];
+  v5 [label="e"];
+  v0 -> v1;
+  v1 -> v2;
+  v1 -> v4;
+  v2 -> v3;
+  v4 -> v5;
+  v0 -> v5;
+}

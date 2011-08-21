@@ -7,7 +7,10 @@ def matrix2csv(matrix, &writer)
     for j in 0...matrix.n_size
       ms[j] = writer.call matrix.get([i,j])
     end
-    s += ms.join ","
+    # NOTE: The separator of csv file is decisively |
+    # I/F to change the charactor is the future work.
+    separator = "|"
+    s += ms.join separator
     s += "\n" unless i == matrix.m_size - 1
   end
   s
