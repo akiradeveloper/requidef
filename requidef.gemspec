@@ -5,17 +5,29 @@
 
 Gem::Specification.new do |s|
   s.name = %q{requidef}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Akira Hayakawa}]
-  s.date = %q{2011-08-20}
+  s.date = %q{2011-08-21}
   s.description = %q{Which do you use for your requirement definition job? MS Excel? MS Word? Uninstall them. Because you will get a better solution.}
   s.email = %q{ruby.wktk@gmail.com}
-  s.executables = [%q{.requidef.swp}, %q{Makefile}, %q{requidef}, %q{sample.rd}, %q{requidef}]
+  s.executables = [%q{Makefile}, %q{requidef}, %q{sample.rd}, %q{requidef}]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
+  ]
+  s.files = [
+    "lib/matrix.rb",
+    "lib/matrix2csv.rb",
+    "lib/node.rb",
+    "lib/nodes2tree.rb",
+    "lib/nodetree.rb",
+    "lib/rd2nodes.rb",
+    "lib/requidef.rb",
+    "lib/row_of_nodes.rb",
+    "lib/tree.rb",
+    "lib/tree2matrix.rb"
   ]
   s.homepage = %q{http://github.com/akiradeveloper/requidef}
   s.licenses = [%q{MIT}]
