@@ -25,7 +25,7 @@ def line2node(line)
   splits = line.split(" ")
   dashes = splits[0]
   depth = dashes.split("").size
-  rest = splits[1...splits.size][0]
+  rest = splits[1...splits.size].join " "
   if rest.start_with?(">>")
     ss = parse_link(rest)
     return Link.new(depth, ss)
@@ -38,23 +38,25 @@ def line2node(line)
   end
 end
 
-def parse_text(s)
-  s
-end
-
 # NOTE: under-engineering
 def parse_link(s)
+  # Fix: Delete only the first >> 
   s.delete ">>" 
 end
 
 # NOTE: under-engineering
 def parse_tag(s)
   ss = s.delete("[[").delete("]]")
+  # Fix: What happen if having two colons
   ss.split(":")
 end
 
+def parse_text(s)
+  s
+end
+
 if __FILE__ == $0
-    puts "nodes from .rd"
+  puts "nodes from .rd"
   nodes = rd2nodes("sample.rd")  
   puts nodes
 end
