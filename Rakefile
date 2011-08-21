@@ -25,7 +25,6 @@ Jeweler::Tasks.new do |gem|
 
   gem.files = FileList["lib/**/*.rb"]
   gem.executables << "requidef"
-  # gem.default_executables = "bin/requidef"
 end
 Jeweler::RubygemsDotOrgTasks.new
 
