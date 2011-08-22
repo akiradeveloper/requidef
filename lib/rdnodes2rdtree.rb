@@ -1,5 +1,5 @@
-require_relative "tree"
-require_relative "node"
+require_relative "generic/tree"
+require_relative "rdnode"
 
 def nodes2tree(nodes)
   nodess = depth2link(nodes)

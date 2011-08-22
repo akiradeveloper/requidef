@@ -1,6 +1,6 @@
 require "rexml/document"
-require_relative "tree"
-require_relative "node"
+require_relative "generic/tree"
+require_relative "rdnode"
 
 def mm2tree(mm)
   build_tree(mm)

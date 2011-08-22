@@ -1,4 +1,4 @@
-require_relative "node"
+require_relative "rdnode"
 
 # rd -> [node]
 def rd2nodes(file)

@@ -1,6 +1,6 @@
-require_relative "matrix2csv"
-require_relative "tree2matrix"
-require_relative "node"
+require_relative "generic/matrix2csv"
+require_relative "generic/tree2matrix"
+require_relative "rdnode"
 
 class Tree
 
@@ -97,8 +97,8 @@ digraph graphname {
   end
 end
 
-require_relative "rd2nodes"
-require_relative "nodes2tree"
+require_relative "rd2rdnodes"
+require_relative "rdnodes2rdtree"
 if __FILE__ == $0
   t = nodes2tree( rd2nodes("sample.rd") ) 
   p t
