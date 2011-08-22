@@ -68,7 +68,7 @@ class Text < Node
   end
 end
 
-DummyRoot = Text.new(0, "Root")
+DummyRoot = Text.new(0, "DummyRoot")
 
 if __FILE__ == $0
   n = Text.new(10, "akira")
