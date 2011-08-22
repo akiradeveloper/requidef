@@ -5,6 +5,22 @@ class Tree
     @parents = []
   end
 
+  def list_depth_traverse(under)
+    list = []
+    do_list_depth_traverse(under, list)
+    return list
+  end
+
+  def do_list_depth_traverse(under, list)
+    list << under
+    if leaf?(under)
+      return
+    end
+    children(under).each do |id|
+      do_list_depth_traverse(id, list)
+    end
+  end
+
   def values
     @values
   end
@@ -89,5 +105,5 @@ if __FILE__ == $0
     puts "children:#{t.children(i)}"
   end
 
-  
+  p t.list_depth_traverse(t.root_id)
 end

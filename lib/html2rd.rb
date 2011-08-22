@@ -1,3 +1,8 @@
+# NOTE:
+# HTML from XMind 3.2.1 lets only h1, h2 and h3.
+# So, this code only succeeds if the height of the tree is no more greater than 3.
+# No practical. Must reconsider.
+
 require "hpricot"
 
 def html2rd(html)
