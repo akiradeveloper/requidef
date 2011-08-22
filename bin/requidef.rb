@@ -6,17 +6,38 @@ require "optparse"
 # Main 
 opt = OptionParser.new
 
+usage = nil
+opt.on("--usage") do |v|
+  usage = v
+end
+
 to = nil
 opt.on("--to=ToType") do |v| 
   to = v
 end
 
 from = nil
-opt.on("--from=[FromType]") do |v|
+opt.on("--from=FromType") do |v|
   from = v
 end
 
 opt.parse!(ARGV)
+
+def usage_msg
+"""  
+Usage:
+requidef supports translations from one file format to another one.
+You usually first create standard input and pipe it to requidef command and continue piping.
+
+Clear Example,
+cat input.mm | requidef --from=mm --to=rd | requidef --from=rd --to=dot > output.dot
+"""
+end
+
+if usage
+  print usage_msg
+  exit
+end
 
 inp = STDIN.read
 
