@@ -7,7 +7,10 @@ class Tree
   def to_csv 
     m = tree2matrix(self)
 
-    c = matrix2csv(m) do |n|
+    range = [
+      0...m.m_size,
+      1...m.n_size]
+    c = matrix2csv(m, range) do |n|
       s = nil
       if n == nil
         s = ""

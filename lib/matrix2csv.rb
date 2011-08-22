@@ -1,10 +1,10 @@
 require_relative "matrix"
 
-def matrix2csv(matrix, &writer)
+def matrix2csv(matrix, range = [0...matrix.m_size, 0...matrix.n_size], &writer)
   s = ""
-  for i in 0...matrix.m_size   
+  for i in range[0]
     ms = []
-    for j in 0...matrix.n_size
+    for j in range[1]
       ms[j] = writer.call matrix.get([i,j])
     end
     # NOTE: The separator of csv file is decisively |

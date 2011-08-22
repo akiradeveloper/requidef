@@ -17,7 +17,7 @@ def nodes2tree(nodes)
 end
 
 def depth2link(nodes)
-  nodess = [Text.new(0, "Root")] + nodes        
+  nodess = [DummyRoot] + nodes        
   nodess.each_with_index do |n, i|
     n.id = i
   end
