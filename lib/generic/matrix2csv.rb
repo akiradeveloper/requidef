@@ -4,13 +4,14 @@ def matrix2csv(matrix, range = [0...matrix.m_size, 0...matrix.n_size], &writer)
   s = ""
   for i in range[0]
     ms = []
-    for j in range[1]
+    ms_range = range[1]
+    for j in ms_range
       ms[j] = writer.call matrix.get([i,j])
     end
     # NOTE: The separator of csv file is decisively |
     # I/F to change the charactor is the future work.
     separator = "|"
-    s += ms.join separator
+    s += ms[ms_range].join separator
     s += "\n" unless i == matrix.m_size - 1
   end
   s
