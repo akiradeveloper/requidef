@@ -1,5 +1,5 @@
 # version 0.1.0
-The consequence of 10H rapid developement. 
+The consequence of 10H rapid developement.   
 It had many bugs so we could not use the command after 'gem install'ing. 
 
 # version 0.2.0
