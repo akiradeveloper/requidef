@@ -3,11 +3,11 @@ Requiem for the boring Requirement Definitions.
 Save time and get back to coding.
 
 ## Motivation
-Do you know the most and the last thing that hinder our technology grow rapidly in this century?
-The most harmful software, you know that is the MS Office.
-We, workers, are forced to write ten of thousand of lenghty documents with MS Word, MS Excel ... you know what.
-I disrespect every single of the softwares MS provides.
-Today, we declared to be free from these greedy evils.
+Do you know the most and the last thing that hinder our technology grow rapidly in this century?  
+The most harmful software, you know that is the MS Office.  
+We, workers, are forced to write ten of thousand of lenghty documents with MS Word, MS Excel ... you know what.  
+I disrespect every single of the softwares MS provides.  
+Today, we declared to be free from these greedy evils.  
 
 This software, requidef [r`ekwidef], will guide you to the haven where any documentation works are happy.
 
