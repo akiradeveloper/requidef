@@ -11,16 +11,6 @@ class Tree
     return list
   end
 
-  def do_list_depth_traverse(under, list)
-    list << under
-    if leaf?(under)
-      return
-    end
-    children(under).each do |id|
-      do_list_depth_traverse(id, list)
-    end
-  end
-
   def values
     @values
   end
@@ -74,6 +64,16 @@ class Tree
 
 private
   
+  def do_list_depth_traverse(under, list)
+    list << under
+    if leaf?(under)
+      return
+    end
+    children(under).each do |id|
+      do_list_depth_traverse(id, list)
+    end
+  end
+
   def register_edge(from, to)
     if @edges[from] == nil
       @edges[from] = Array.new

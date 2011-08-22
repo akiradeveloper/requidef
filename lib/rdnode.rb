@@ -25,6 +25,10 @@ class Link < Node
   def to_csv
     ""
   end
+
+  def to_rd
+    "#{dashes(@depth)} >>#{@dest}"
+  end
 end
 
 class Tag < Node
@@ -46,6 +50,10 @@ class Tag < Node
   def to_desc
     @text
   end
+
+  def to_rd
+    "#{dashes(@depth)} [[#{@tag}:#{@text}]]"
+  end
 end
 
 
@@ -66,6 +74,14 @@ class Text < Node
   def to_desc
     @text
   end
+
+  def to_rd
+    "#{dashes(@depth)} #{@text}"
+  end
+end
+
+def dashes(n)
+  Array.new(n, "-").join ""
 end
 
 DummyRoot = Text.new(0, "DummyRoot")

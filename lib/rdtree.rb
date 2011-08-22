@@ -97,10 +97,9 @@ digraph graphname {
   end
 end
 
-require_relative "rd2rdnodes"
-require_relative "rdnodes2rdtree"
+require_relative "rd2rdtree"
 if __FILE__ == $0
-  t = nodes2tree( rd2nodes("sample.rd") ) 
+  t = rd2rdtree("sample.rd")
   p t
   p t.to_csv
   print t.to_dot
