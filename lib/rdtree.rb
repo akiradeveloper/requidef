@@ -25,7 +25,7 @@ end
 
 require_relative "rd2rdtree"
 if __FILE__ == $0
-  t = rd2rdtree("sample.rd")
+  t = rd2rdtree( File.read("sample.rd"))
   puts t.to_csv
   puts t.to_dot
 end

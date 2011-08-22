@@ -2,8 +2,12 @@ require "rexml/document"
 require_relative "generic/tree"
 require_relative "rdnode"
 
-def mm2tree(mm)
+def mm2rdtree(mm)
   build_tree(mm)
+end
+
+def mm2tree(mm)
+  mm2rdtree(mm)
 end
 
 # Doc -> Tree (of Text node class)
@@ -37,18 +41,13 @@ def to_node(doc, depth)
 end
 
 def root_node_of(mm)
-  f = File.open(mm, "r")
-  
-  txt = f.read
-  doc = REXML::Document.new( txt )
-
-  f.close
+  doc = REXML::Document.new( mm )
   doc.root.elements[1]
 end
 
 if __FILE__ == $0
   # p root_node_of("sample.mm")
-  p mm2tree("sample.mm")
+  p mm2tree( File.read("sample.mm") )
 
   puts "# Test ------------------------"
   include REXML

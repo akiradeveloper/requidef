@@ -1,12 +1,14 @@
 require_relative "rdnode"
 
-# rd -> [node]
-def rd2nodes(file)
-  f = File.open(file, "r")
-  lines = f.read.split("\n")
+def rd2rdnodes( rd)
+  lines = rd.split("\n")
   nodes = lines2nodes(lines)
-  f.close
-  nodes
+  nodes 
+end
+
+# rd -> [node]
+def rd2nodes(rd)
+  rd2rdnodes(rd)
 end
 
 def lines2nodes(lines)
@@ -57,6 +59,6 @@ end
 
 if __FILE__ == $0
   puts "nodes from .rd"
-  nodes = rd2nodes("sample.rd")  
+  nodes = rd2nodes( File.read("sample.rd") )  
   puts nodes
 end

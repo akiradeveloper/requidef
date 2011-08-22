@@ -28,7 +28,7 @@ def repeat(n, s)
 end
 
 def read_body(html)
-  doc = Hpricot(open("sample.html"))
+  doc = Hpricot( html )
   x = ""
   (doc/"body").each do |e|
     x += e.to_html
@@ -37,7 +37,7 @@ def read_body(html)
 end
 
 if __FILE__ == $0
-  p html2rd("sample.html")
-  # p read_body("sample.html")
-  # p read_anchor("<a name=\"hoge\">text</a>")
+  p html2rd( File.read("sample.html") )
+  p read_body( File.read("sample.html") )
+  p read_anchor("<a name=\"hoge\">text</a>")
 end

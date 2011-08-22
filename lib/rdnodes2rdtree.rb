@@ -1,6 +1,10 @@
 require_relative "generic/tree"
 require_relative "rdnode"
 
+def rdnodes2rdtree(nodes)
+  nodes2tree(nodes)
+end
+
 def nodes2tree(nodes)
   nodess = depth2link(nodes)
   t = Tree.new

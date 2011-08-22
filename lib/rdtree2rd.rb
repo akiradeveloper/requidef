@@ -1,5 +1,9 @@
 require_relative "generic/tree"
 
+def rdtree2rd(tree)
+  tree.to_rd
+end
+
 class Tree
   def to_rd
     nodes = list_depth_traverse(root_id)
@@ -13,6 +17,6 @@ end
 
 require_relative "rd2rdtree"
 if __FILE__ == $0
-  t = rd2rdtree( "sample.rd" )
+  t = rd2rdtree( File.read("sample.rd"))
   print t.to_rd
 end

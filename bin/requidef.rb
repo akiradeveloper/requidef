@@ -3,33 +3,37 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require "requidef"
 require "optparse"
 
-def print_dot(input)
-  print dot(input)
-end
-
-def print_csv(input)
-  print csv(input)
-end
-
 # Main 
 opt = OptionParser.new
 
-type = nil
-opt.on("-t", "--type=VAL") do |v| 
-  type = v
+to = nil
+opt.on("--to=ToType") do |v| 
+  to = v
 end
 
-input = nil
-opt.on("-f", "--file=VAL") do |v|
-  input = v
+from = nil
+opt.on("--from=[FromType]") do |v|
+  from = v
 end
+
 opt.parse!(ARGV)
 
-case type 
+inp = STDIN.read
+
+def check_nil(x)
+  if x == nil
+    raise "input #{x} is nil"
+  end
+  x
+end
+
+case to 
 when "dot"
-  print_dot(input)
+  print to_dot(inp)
 when "csv"
-  print_csv(input)
+  print to_csv(inp)
+when "rd"
+  print to_rd(inp, check_nil(from))
 else
-  raise "no match on type"
+  raise "no match on output type"
 end
