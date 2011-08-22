@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{requidef}
-  s.version = "0.1.4"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Akira Hayakawa}]
   s.date = %q{2011-08-22}
   s.description = %q{Which do you use for your requirement definition job? MS Excel? MS Word? Uninstall them. Because you will get a better solution.}
   s.email = %q{ruby.wktk@gmail.com}
-  s.executables = [%q{Makefile}, %q{requidef}, %q{requidef.rb}, %q{sample.rd}, %q{requidef}]
+  s.executables = [%q{Makefile}, %q{requidef}, %q{requidef.rb}, %q{sample.html}, %q{sample.mm}, %q{sample.rd}, %q{requidef}]
   s.extra_rdoc_files = [
     "ChangeLog.md",
     "LICENSE.txt",
