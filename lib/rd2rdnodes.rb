@@ -1,7 +1,18 @@
 require_relative "rdnode"
 
+def rd2lines(rd)
+  all_lines = rd.split("\n")
+  all_lines
+  .delete_if do |line|
+    line.empty?
+  end
+  .delete_if do |line|
+    line.start_with? "//"
+  end 
+end
+
 def rd2rdnodes( rd)
-  lines = rd.split("\n")
+  lines = rd2lines(rd)
   nodes = lines2nodes(lines)
   nodes 
 end
@@ -40,17 +51,26 @@ def line2node(line)
   end
 end
 
-# NOTE: under-engineering
+# NOTE: Under Engineering
 def parse_link(s)
   # Fix: Delete only the first >> 
   s.delete ">>" 
 end
 
-# NOTE: under-engineering
+# NOTE: Under Engineering
 def parse_tag(s)
   ss = s.delete("[[").delete("]]")
   # Fix: What happen if having two colons
-  ss.split(":")
+  # In current version, if haveing two colons will cause unexpected output or runtime error.
+  xs = ss.split(":")
+  case xs.size
+  when 1
+    return [xs[0], xs[0]]
+  when 2
+    return xs
+  end
+  # In current  version, if more than two colons will raise exception.
+  raise "Parse Erorr. The line #{s} contains more than two colons"
 end
 
 def parse_text(s)
