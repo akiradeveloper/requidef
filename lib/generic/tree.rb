@@ -49,6 +49,13 @@ class Tree
     @values[id] = value 
   end
 
+  def update_value(id, value)
+    # In current version, 
+    # update_value is just a wrapper of add_node.
+    # but in future version, this may need modification.
+    add_node(id, value)
+  end
+
   def add_edge(from, to)
     register_edge(from, to)
     register_parent(to, from)

@@ -30,6 +30,10 @@ def lines2nodes(lines)
   xs 
 end
 
+def parse_lenient?
+  ENV["REQUIDEF_PARSE_LENIENT"] == "true"
+end
+
 # Example,
 # --- aaa => Text(3, "aaa")
 # -- >>bbb => Link(2, "bbb")
@@ -46,6 +50,14 @@ def line2node(line)
     ss = parse_tag(rest)
     return Tag.new(depth, ss[0], ss[1]) 
   else
+    # NOTE: Design Issue
+    # If REQUIDEF_PARSE_LENIENT flag is on,
+    # This software understands every text nodes as link nodes whose dest is text.
+    if parse_lenient?
+      $stderr << "parse_lenient? true"
+      ss = parse_text(rest)
+      return Link.new(depth, ss)
+    end
     ss = parse_text(rest)
     return Text.new(depth, ss)
   end

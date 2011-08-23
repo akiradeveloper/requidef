@@ -21,6 +21,12 @@ opt.on("--from=FromType") do |v|
   from = v
 end
 
+opt.on("--parse-lenient", "parse all text nodes as link nodes.") do |v|
+  # NOTE: Design Issue
+  # This uses global env table. If Ruby process has its own table, use it instead.
+  ENV["REQUIDEF_PARSE_LENIENT"] = "true"
+end
+
 opt.parse!(ARGV)
 
 def usage_msg

@@ -1,12 +1,14 @@
-sample : dot_sample csv_sample
+sample : rd_sample mm_sample csv_sample
 
-dot_sample :
-	cat sample.mm | requidef --from=mm --to=rd | requidef --from=rd --to=dot > sample.dot
-	dot -Tjpg sample.dot -o sample.jpg
+rd_sample :
+	cat sample.rd | requidef --parse-lenient --from=rd --to=dot | dot -Tjpg -o rd.jpg 
+
+mm_sample :
+	cat sample.mm | requidef --from=mm --to=rd | requidef --from=rd --to=dot | dot -Tjpg -o mm.jpg
 
 csv_sample :
-	cat sample.html | requidef --from=html --to=rd | requidef --from=rd --to=csv > sample.csv
+	cat sample.html | requidef --from=html --to=rd | requidef --from=rd --to=csv > html.csv
 
 clean_sample :
-	rm sample.dot sample.csv sample.jpg
+	rm rd.jpg mm.jpg html.csv
 	
