@@ -26,3 +26,7 @@ Empty Line,
 Imagine if all the link must have definitly the real desitination. What could be happened?  
 * Code Clean  
 Testing will be automated so that the future development will be saved.
+* Design Issue  
+rationalize! method in rdtree is quite wierd. fix it or not.
+
+

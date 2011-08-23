@@ -30,13 +30,16 @@ end
 opt.parse!(ARGV)
 
 def usage_msg
-"""  
-Usage:
+"""Usage:
 requidef supports translations from one file format to another one.
 You usually first create standard input and pipe it to requidef command and continue piping.
 
 Clear Example,
 cat input.mm | requidef --from=mm --to=rd | requidef --from=rd --to=dot > output.dot
+
+For more details, see help.
+
+Enjoy!
 """
 end
 
