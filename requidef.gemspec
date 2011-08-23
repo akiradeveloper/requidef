@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{requidef}
-  s.version = "0.2.0"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Akira Hayakawa}]
-  s.date = %q{2011-08-22}
+  s.date = %q{2011-08-23}
   s.description = %q{Which do you use for your requirement definition job? MS Excel? MS Word? Uninstall them. Because you will get a better solution.}
   s.email = %q{ruby.wktk@gmail.com}
-  s.executables = [%q{Makefile}, %q{requidef}, %q{requidef.rb}, %q{sample.html}, %q{sample.mm}, %q{sample.rd}, %q{requidef}]
+  s.executables = [%q{Makefile}, %q{requidef}, %q{requidef.rb}, %q{sample.html}, %q{sample.mm}, %q{sample.rd}, %q{sample2.rd}, %q{requidef}]
   s.extra_rdoc_files = [
     "ChangeLog.md",
     "LICENSE.txt",
@@ -49,17 +49,20 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<hpricot>, [">= 0.8.4"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.3.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<hpricot>, [">= 0.8.4"])
     end
   else
     s.add_dependency(%q<rspec>, ["~> 2.3.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<hpricot>, [">= 0.8.4"])
   end
 end
 
