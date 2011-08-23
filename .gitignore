@@ -1,3 +1,6 @@
+# hidden files directories
+doc/xmind
+
 # rcov generated
 coverage
 
