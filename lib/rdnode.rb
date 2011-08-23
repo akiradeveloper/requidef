@@ -1,10 +1,42 @@
 class Node
   def initialize(depth)
-    @depth = depth
     @tmp = {}
+    @depth = depth
+    @tree = nil
+    @id = nil
   end
-  attr_reader :tmp ,:depth
-  attr_accessor :id
+  attr_reader :tmp
+
+  def depth
+    if @depth == nil
+      return do_depth
+    end
+    @depth
+  end
+
+  def id
+    @id
+  end
+
+  def id=(x)
+    if @tree == nil
+      @id = x
+      return
+    end
+    raise "Error can not call id=(#{x}) for this node."
+  end
+
+  def add_on_tree(idd, tree)
+    tree.add_node(idd, self)
+    @tree = tree
+    @id = idd
+    @depth = nil
+  end
+
+private
+  def do_depth
+    @tree.depth(id)
+  end
 end
 
 class Link < Node
@@ -27,7 +59,7 @@ class Link < Node
   end
 
   def to_rd
-    "#{dashes(@depth)} >>#{@dest}"
+    "#{dashes(depth)} >>#{@dest}"
   end
 end
 
@@ -40,7 +72,7 @@ class Tag < Node
   attr_reader :tag
 
   def to_s
-    "(Tag depth:#{@depth}, tag:#{@tag}, text:#{@text}, tmp:#{@tmp})"
+    "(Tag depth:#{depth}, tag:#{@tag}, text:#{@text}, tmp:#{@tmp})"
   end  
 
   def to_csv
@@ -52,7 +84,7 @@ class Tag < Node
   end
 
   def to_rd
-    "#{dashes(@depth)} [[#{@tag}:#{@text}]]"
+    "#{dashes(depth)} [[#{@tag}:#{@text}]]"
   end
 end
 
@@ -64,7 +96,7 @@ class Text < Node
   end
 
   def to_s
-    "(Text depth:#{@depth}, text:#{@text}, tmp:#{@tmp})"
+    "(Text depth:#{depth}, text:#{@text}, tmp:#{@tmp})"
   end   
 
   def to_csv
@@ -76,7 +108,7 @@ class Text < Node
   end
 
   def to_rd
-    "#{dashes(@depth)} #{@text}"
+    "#{dashes(depth)} #{@text}"
   end
 end
 

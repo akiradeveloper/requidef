@@ -9,7 +9,7 @@ def nodes2tree(nodes)
   nodess = depth2link(nodes)
   t = Tree.new
   nodess.each do |n|
-    t.add_node(n.id, n)
+    n.add_on_tree(n.id, t)
   end
   for i in 1...nodess.size
     n = nodess[i]
