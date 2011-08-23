@@ -6,6 +6,21 @@ require "optparse"
 # Main 
 opt = OptionParser.new
 
+def translations
+"""Supported Translations:
+mm, html -> rd
+rd -> dot, csv
+(Future release will support rd <-> tgf).
+
+For the usage, please see --usage
+"""
+end
+
+opt.on("--view-supported-translations") do |v|
+  print translations
+  exit
+end
+
 usage = nil
 opt.on("--usage") do |v|
   usage = v
