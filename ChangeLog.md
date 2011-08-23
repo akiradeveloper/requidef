@@ -17,12 +17,12 @@ Other features,
 
 ## Version 0.3.0 (Forecast)
 * Add more format to translate (TGF, GML, ..).
-* Parser Enhancement (Hopefully all but few would be eliminated).
-1. Comment Out,  
-2. Line Breaking,  
-3. Empty Line,  
-4. [[tagname]] -> [[tagname:tagname]] for DRY.  
+* Parser Enhancement (Hopefully all but few would be eliminated).  
+Comment Out,  
+Line Breaking,  
+Empty Line,  
+[[tagname]] -> [[tagname:tagname]] for DRY.  
 * Not all the (>>dest) does not have the real destination. Even in that case, works fine.  
-Imagine if all the link must have definitly the real desitination. What could be happened?
-* Code Clean
+Imagine if all the link must have definitly the real desitination. What could be happened?  
+* Code Clean  
 Testing will be automated so that the future development will be saved.

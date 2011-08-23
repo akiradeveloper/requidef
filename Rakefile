@@ -50,3 +50,21 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+namespace "requidef" do 
+
+# TODO: Under-Engineering.
+# grep the error line will lessen the future cost.
+desc "run all the main routines and grep errors"
+task "maintest" do
+  result = []
+  FileList["lib/**/*.rb"].each do |rb|
+    dirname = File.dirname(rb)
+    filename = File.basename(rb)
+    cd dirname do
+      result << `ruby #{filename}`
+    end
+  end
+  puts result.join("\n") # .split("\n").delete_if { |x| x =~ "Error" }
+end
+end
