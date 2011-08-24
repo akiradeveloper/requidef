@@ -16,7 +16,7 @@ Other features,
 * It is now ready to get started by just gem installing.
 * etc.
 
-## Version 0.3.0 (Forecast)
+## Version 0.3.0 (Aug. 24, 2011)
 In development of this version, I have found that
 this software does not meet my requirements.
 So I have decided to release it as version 0.3.0
@@ -28,7 +28,6 @@ to use version before 0.4.0 because it is obsolete.
 
 * Parser Enhancement (Hopefully all but few would be eliminated).  
 Comment Out,  
-Line Breaking (Not achieved),  
 Empty Line,  
 [[tagname]] -> [[tagname:tagname]] for DRY.  
 * Add --parse-lenient option.
@@ -37,11 +36,11 @@ Empty Line,
 ## Version 0.4.0 (Forecast)
 Will almost completely discard backward-compatibility.
 
-* Add more format to translate (TGF, GML, ..).
+* Add more format to translate (TGF, GML, ..).  
 RD and TGF will be compatible.
-* CLI Interface changes.
-* RD format changes.
+* CLI Interface changes.  
+* RD format changes.  
 For convenience, I have decided to change the RD format and hence discard backward-compatibility. 
-* Parser for .mm format will be extended.
+* Parser for .mm format will be extended.  
 Version before 0.4.0 only supports .mm of simple tree.  
 Version 0.4.0 supports links freely come across the tree.
