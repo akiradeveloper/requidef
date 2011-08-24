@@ -54,7 +54,6 @@ def line2node(line)
     # If REQUIDEF_PARSE_LENIENT flag is on,
     # This software understands every text nodes as link nodes whose dest is text.
     if parse_lenient?
-      $stderr << "parse_lenient? true"
       ss = parse_text(rest)
       return Link.new(depth, ss)
     end
