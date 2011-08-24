@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{requidef}
-  s.version = "0.2.2"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Akira Hayakawa}]
-  s.date = %q{2011-08-23}
+  s.date = %q{2011-08-24}
   s.description = %q{Which do you use for your requirement definition job? MS Excel? MS Word? Uninstall them. Because you will get a better solution.}
   s.email = %q{ruby.wktk@gmail.com}
   s.executables = [%q{Makefile}, %q{requidef}, %q{requidef.rb}, %q{sample.html}, %q{sample.mm}, %q{sample.rd}, %q{sample2.rd}, %q{requidef}]
