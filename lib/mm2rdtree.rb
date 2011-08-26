@@ -24,7 +24,7 @@ def do_build_tree(doc, id, depth, t)
   t.add_node( id, to_node(doc, depth) )
   n = doc.elements.size
   for i in 1...n+1
-    child_id = id+i
+    child_id = id+i # TODO: Killing a bug here.
     child_depth = depth + 1
     child_doc = doc.elements[i]
     child_value = to_node( child_doc, child_depth )
