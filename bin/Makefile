@@ -10,6 +10,7 @@ rd_composition_sample :
 
 mm_sample :
 	cat $(dir)/sample.mm | requidef --from=mm --to=rd | requidef --from=rd --to=dot | dot -Tjpg -o mm.jpg
+	# cat $(dir)/sample.mm | requidef --from=mm --to=rd 
 
 csv_sample :
 	cat $(dir)/sample.html | requidef --from=html --to=rd | requidef --from=rd --to=csv > html.csv

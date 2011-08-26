@@ -3,7 +3,7 @@ class Node
     @tmp = {}
     @depth = depth
     @tree = nil
-    @id = 100
+    @id = nil
   end
   attr_reader :tmp
 
@@ -19,6 +19,7 @@ class Node
   end
 
   def id=(x)
+    $stderr << "id called"
     if @tree == nil
       @id = x
       return
@@ -123,5 +124,5 @@ if __FILE__ == $0
   n.tmp[:x] = 100
   p n
   n.id = 100
-  p n.id
+  p n
 end
