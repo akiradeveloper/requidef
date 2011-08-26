@@ -1,8 +1,9 @@
 class Tree
   def initialize
-    @values = []
-    @edges = []
-    @parents = []
+    @values = {}
+    @edges = {}
+    @parents = {}
+    @root = nil
   end
 
   def list_depth_traverse(under)
@@ -12,7 +13,7 @@ class Tree
   end
 
   def values
-    @values
+    @values.values
   end
 
   def size
@@ -34,7 +35,7 @@ class Tree
   end
 
   def root_id
-    0
+    @root
   end
   
   def value(id)
@@ -46,13 +47,15 @@ class Tree
   end
   
   def add_node(id, value)
+    # The first node added is the root node.
+    @root = id if @root == nil
     @values[id] = value 
   end
 
   def update_value(id, value)
     # In current version, 
     # update_value is just a wrapper of add_node.
-    # but in future version, this may need modification.
+    # but in the future version, this may need modification.
     add_node(id, value)
   end
 
@@ -95,11 +98,12 @@ end
 
 if __FILE__ == $0
   t = Tree.new
+  t.add_edge(0, 1)
+
   t.add_node(0, "a")
   t.add_node(1, "b")
   t.add_node(2, "c")
   
-  t.add_edge(0, 1)
   t.add_edge(1, 2)
   [0,1,2].each do |i|
     puts "id:#{i}"
