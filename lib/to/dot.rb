@@ -1,5 +1,13 @@
 require_relative "../generic/tree"
 
+class DOT
+  def initialize(rdtree)
+  end
+
+  def write
+  end
+end
+
 class Tree
 
   def to_dot

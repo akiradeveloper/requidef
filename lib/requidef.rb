@@ -4,6 +4,7 @@ require_relative "rdnodes2rdtree"
 require_relative "html2rd"
 require_relative "mm2rdtree"
 require_relative "rdtree2rd"
+require_relative "option"
 
 # File -> String
 def to_dot(txt)
