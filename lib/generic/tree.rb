@@ -6,12 +6,30 @@ class Tree
     @root = nil
   end
 
+  def deque(queue)
+    queue.delete_at(0)
+  end
+
+  def list_breadth_traverse(under)
+    list = [under]
+    queue = [under]
+    until queue.empty? 
+      id = deque(queue)
+      children(id).each do |child|
+	list << child
+        queue << child
+      end
+    end
+    return list
+  end
+
   def list_depth_traverse(under)
     list = []
     do_list_depth_traverse(under, list)
     return list
   end
 
+  # TODO: Should be removed.
   def values
     @values.values
   end
@@ -43,7 +61,11 @@ class Tree
   end
 
   def children(id)
-    @edges[id]
+    edges = @edges[id]
+    if edges == nil
+      return []
+    end
+    edges
   end
   
   def add_node(id, value)
@@ -117,4 +139,5 @@ if __FILE__ == $0
   end
 
   p t.list_depth_traverse(t.root_id)
+  p t.list_breadth_traverse(t.root_id)
 end
