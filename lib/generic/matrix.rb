@@ -1,4 +1,5 @@
 class Matrix
+
   def initialize()
     @mat = []
     @n = 0

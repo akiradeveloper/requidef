@@ -1,11 +1,11 @@
-- aaa bbb
--- b
+-         aaa bbb
+--   b
 
 // comment
---- ccc, ddd
-// this 's' should be a link if lenient mode.
+---    ccc, ddd
+
+
 -- s
---- [[t:eee fff]]
---- [[s]]
-- >>t
-- >>link can not find tag
+--- #t = eee fff
+- >     t
+- > link can not find tag

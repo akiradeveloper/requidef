@@ -25,6 +25,7 @@ def depth2link(nodes)
   nodess.each_with_index do |n, i|
     n.id = i
   end
+
   current = [nodess[0]]
   for i in 1...nodess.size
     n = nodess[i]
@@ -32,7 +33,6 @@ def depth2link(nodes)
     n.tmp[:parent_id] = current[x].id
     current[n.depth] = n
   end
-  
   nodess
 end
 

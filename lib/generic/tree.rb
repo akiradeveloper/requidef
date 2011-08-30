@@ -1,13 +1,10 @@
 class Tree
+
   def initialize
     @values = {}
     @edges = {}
     @parents = {}
     @root = nil
-  end
-
-  def deque(queue)
-    queue.delete_at(0)
   end
 
   def list_breadth_traverse(under)
@@ -50,6 +47,10 @@ class Tree
       d += 1
     end
     d
+  end
+
+  def keys
+    @values.keys
   end
 
   def root_id
@@ -95,7 +96,11 @@ class Tree
   end
 
 private
-  
+
+  def deque(queue)
+    queue.delete_at(0)
+  end
+
   def do_list_depth_traverse(under, list)
     list << under
     if leaf?(under)

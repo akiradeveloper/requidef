@@ -6,24 +6,12 @@ require "optparse"
 # Main 
 opt = OptionParser.new
 
-def translations
-"""Supported Translations:
-mm, html -> rd
-rd -> dot, csv
-(Future release will support rd <-> tgf).
-
-For the usage, please see --usage
-"""
+opt.on("--to-csv-indexing Range") do |v|
+  raise
 end
 
-opt.on("--view-supported-translations") do |v|
-  print translations
-  exit
-end
-
-usage = nil
-opt.on("--usage") do |v|
-  usage = v
+opt.on("--map-uselesstag-to-text") do |v|
+  raise
 end
 
 to = nil
@@ -36,14 +24,20 @@ opt.on("--from=FromType") do |v|
   from = v
 end
 
+def translations
+"""Supported Translations:
+mm, html -> rd
+rd -> dot, csv
+(Future release will support rd <-> tgf).
 
-opt.on("--parse-lenient", "parse all text nodes as link nodes.") do |v|
-  # NOTE: Design Issue
-  # This uses global env table. If Ruby process has its own table, use it instead.
-  ENV["REQUIDEF_PARSE_LENIENT"] = "true"
+For the usage, please see --usage
+"""
 end
 
-opt.parse!(ARGV)
+opt.on("--view-supported-translations") do |v|
+  puts translations
+  exit
+end
 
 def usage_msg
 """Usage:
@@ -59,27 +53,37 @@ Enjoy!
 """
 end
 
-if usage
-  print usage_msg
+opt.on("--usage") do |v|
+  puts usage_msg
   exit
 end
 
+opt.parse!(ARGV)
+
 inp = STDIN.read
 
-def check_nil(x)
-  if x == nil
-    raise "input #{x} is nil"
-  end
-  x
-end
+if from==nil
 
-case to 
-when "dot"
-  print to_dot(inp)
-when "csv"
-  print to_csv(inp)
-when "rd"
-  print to_rd(inp, check_nil(from))
+  case to 
+  when "dot"
+    print to_dot(inp)
+  when "csv"
+    print to_csv(inp)
+  else
+    raise "no match to type"
+  end
+
+elsif to==nil
+
+  case from
+  when "mm"
+    print from_mm(inp)
+  when "html"
+    print from_html(inp)
+  else
+    raise "no match from type"
+  end
+
 else
-  raise "no match on output type"
+   # RD -> RD
 end

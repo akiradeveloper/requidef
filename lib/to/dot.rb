@@ -1,4 +1,4 @@
-require_relative "generic/tree"
+require_relative "../generic/tree"
 
 class Tree
 

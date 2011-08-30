@@ -1,6 +1,6 @@
 require "rexml/document"
-require_relative "generic/tree"
-require_relative "rdnode"
+require_relative "../generic/tree"
+require_relative "../rdnode"
 
 def mm2rdtree(mm)
   build_tree(mm)
@@ -57,11 +57,11 @@ def root_node_of(mm)
 end
 
 if __FILE__ == $0
-  p mm2tree( File.read("sample.mm") )
+  p mm2tree( File.read("resources/sample.mm") )
 
   puts "# Test ------------------------"
   include REXML
-  f = File.open("sample.mm", "r")
+  f = File.open("resources/sample.mm", "r")
   txt = f.read
 
   p txt

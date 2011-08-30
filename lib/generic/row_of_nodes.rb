@@ -8,17 +8,32 @@ class RowOfNodes
 
   def initialize(tree)
     @tree = tree
-    @array = Array.new(tree.values.size, [0,0])
+    @array = initmap(tree)
   end 
+
+  def initmap(tree)
+    h = {}
+    tree.keys.each do |id|
+      h[id] = [0,0]
+    end
+    return h
+  end
 
   def row_of_nodes
     n = @tree.root_id
     set_row_of_nodes(n)
-    @array.map { |xx| xx[0] }
+    # @array.map { |xx| xx[0] }
+    h = {}
+    @array.each_pair do |key, value|
+      h[key] = value[0]
+    end
+    h
   end
 
 private
 
+  # NOTE: under id?
+  # if so, refactor name
   def set_row_of_nodes(id)
     if @tree.leaf? id
       @array[id][1] = 1
@@ -52,16 +67,21 @@ if __FILE__ == $0
   # -----------------------
 
   t = Tree.new
-  t.add_node(0, nil)
-  t.add_node(1, nil)
+  # For Tree to let any as ID.
+  # This test must be passed.
+  t.add_node("a", nil)
+  t.add_node("b", nil)
   t.add_node(2, nil)
   t.add_node(3, nil)
   t.add_node(4, nil)
 
-  t.add_edge(0, 2)
-  t.add_edge(0, 1)
-  t.add_edge(1, 3)
-  t.add_edge(1, 4)
+  t.add_edge("a", 2)
+  t.add_edge("a", "b")
+  t.add_edge("b", 3)
+  t.add_edge("b", 4)
 
+  # TODO: Move to RSpec
+  # Result.
+  # {"a"=>0, "b"=>1, 2=>0, 3=>1, 4=>2}
   p row_of_nodes(t)
 end

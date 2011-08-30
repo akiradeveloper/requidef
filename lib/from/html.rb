@@ -37,7 +37,7 @@ def read_body(html)
 end
 
 if __FILE__ == $0
-  p html2rd( File.read("sample.html") )
-  p read_body( File.read("sample.html") )
+  p html2rd( File.read("resources/sample.html") )
+  p read_body( File.read("resources/sample.html") )
   p read_anchor("<a name=\"hoge\">text</a>")
 end

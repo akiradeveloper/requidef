@@ -1,6 +1,6 @@
 require_relative "generic/matrix2csv"
 require_relative "generic/tree2matrix"
-require_relative "rdtree2dot"
+require_relative "to/dot"
 
 class Tree
 
@@ -142,7 +142,7 @@ end
 
 require_relative "rd2rdtree"
 if __FILE__ == $0
-  t = rd2rdtree( File.read("sample.rd"))
+  t = rd2rdtree( File.read("resources/sample.rd"))
   t.not_found_link2text!
 #  p t
 #  puts t.to_csv

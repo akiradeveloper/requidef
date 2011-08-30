@@ -1,15 +1,21 @@
 class Node
+
   def initialize(depth)
     @tmp = {}
     @depth = depth
     @tree = nil
-    @id = 100
+    
+    # NOTE: What is this magic number 100?
+    # I guess for some debugging and turned it to nil.
+    # @id = 100 
+    @id # = nil 
   end
+
   attr_reader :tmp
 
   def depth
     if @depth == nil
-      return do_depth
+      return get_depth_asking_tree
     end
     @depth
   end
@@ -29,17 +35,18 @@ class Node
   def add_on_tree(idd, tree)
     tree.add_node(idd, self)
     @tree = tree
-    @id = idd
+    @id = idd # Sync ID
     @depth = nil
   end
 
 private
-  def do_depth
-    @tree.depth(id)
+  def get_depth_asking_tree
+    @tree.depth(@id)
   end
 end
 
 class Link < Node
+
   def initialize(depth, dest)
     super(depth)
     @dest = dest
@@ -50,20 +57,13 @@ class Link < Node
     "(Link depth:#{@depth}, dest:#{@dest}, tmp:#{@tmp})"
   end   
 
-  def to_desc
-    ""
-  end
-
-  def to_csv
-    ""
-  end
-
   def to_rd
-    "#{dashes(depth)} >>#{@dest}"
+    "#{dashes(depth)} >#{@dest}"
   end
 end
 
 class Tag < Node
+
   def initialize(depth, tag, text)
     super(depth)
     @tag = tag
@@ -75,16 +75,8 @@ class Tag < Node
     "(Tag depth:#{depth}, tag:#{@tag}, text:#{@text}, tmp:#{@tmp})"
   end  
 
-  def to_csv
-    @text
-  end
-
-  def to_desc
-    @text
-  end
-
   def to_rd
-    "#{dashes(depth)} [[#{@tag}:#{@text}]]"
+    "#{dashes(depth)} \##{@tag}\##{@text}"
   end
 end
 
@@ -98,14 +90,6 @@ class Text < Node
   def to_s
     "(Text depth:#{depth}, text:#{@text}, tmp:#{@tmp})"
   end   
-
-  def to_csv
-    @text
-  end
-
-  def to_desc
-    @text
-  end
 
   def to_rd
     "#{dashes(depth)} #{@text}"
