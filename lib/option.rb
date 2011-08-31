@@ -44,7 +44,7 @@ class Option
       else
       end
     when TO
-      rdtree = Reader.new(inp).translate
+      rdtree = From::RD.new(inp).translate
       case type
       when "dot"
         return To::DOT.new(rdtree, self).translate
@@ -53,7 +53,7 @@ class Option
       else
       end
     when SELF
-      rdtree = Reader.new(inp).translate
+      rdtree = From::RD.new(inp).translate
       To::RD.new(rdtree, self).translate
     else
     end
@@ -125,11 +125,11 @@ private
       [MAP_TAG_TO_LINK_IF_POSSIBLE] = true
     end
 
-    @opt.on("--#{TO}=ToType") do |v| 
+    @opt.on("--" + TO + "=ToType") do |v| 
       @map["to"] = v
     end
     
-    @opt.on("--#{FROM}=FromType") do |v|
+    @opt.on("--" + FROM + "=FromType") do |v|
       @map["from"] = v
     end
   end

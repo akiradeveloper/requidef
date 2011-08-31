@@ -1,5 +1,5 @@
-require_relative "../generic/tree"
-require_relative "../rdnode"
+require_relative "../rdtree"
+# require_relative "../generic/tree"
 
 class RDNodes2RDTree
 
@@ -9,9 +9,9 @@ class RDNodes2RDTree
 
   def translate
     nodes = with_link_to_parent
-    t = Tree.new
+    t = RDTree.new
     nodes.each do |n|
-      n.add_on_tree(n.id, t)
+      t.add_node(n.id, n)
     end
     for i in 1...nodes.size
       n = nodes[i]

@@ -1,6 +1,5 @@
 require "rexml/document"
-require_relative "../generic/tree"
-require_relative "../rdnode"
+require_relative "../rdtree"
 
 module From
 
@@ -19,7 +18,7 @@ private
 
   # Doc -> Tree (of Text node class)
   def build_tree
-    t = Tree.new
+    t = RDTree.new
     t.add_node(0, DummyRoot)
     root = root_node_of
     t.add_edge(0, root.attributes["ID"])
@@ -76,7 +75,7 @@ if __FILE__ == $0
   txt = f.read
 
   p txt
-  doc = Document.new txt
+  doc = Drcument.new txt
   p doc
   p doc.size
   p "xx"

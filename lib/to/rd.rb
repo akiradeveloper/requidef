@@ -1,6 +1,6 @@
-require_relative "generic/tree"
+require_relative "../rdtree"
 
-class Tree
+class RDTree
 
   def fmap_unlinked_tag_to_text!
   end

@@ -1,4 +1,12 @@
-class Tree
+require_relative "generic/tree"
+require_relative "rdnode"
+
+class RDTree < Tree
+
+  def update_value(id, node)
+    super(id, node)
+    node.put_on_tree(id, self)  
+  end
 
   def rationalize!
     not_found_link2text!
@@ -11,6 +19,12 @@ class Tree
 
 private
 
+  class Rationalize
+    def do
+      
+    end
+  end
+
   def not_found_link2text!
     list_link_nodes.each do |id|
       if can_not_find_tag(id)
@@ -22,7 +36,7 @@ private
   def modify_link2text(id)
     linknode = value(id)
     textnode = link2text(linknode)
-    textnode.add_on_tree(id, self)
+    update_value(id, textnode)
   end
 
   # NOTE: Maybe Under-Engineering.
@@ -84,3 +98,6 @@ private
     id2tag
   end
 end
+
+if __FILE__ == $0
+end 

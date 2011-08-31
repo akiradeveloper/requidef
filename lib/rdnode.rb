@@ -36,8 +36,8 @@ class Node
     raise "Error can not call tree=(#{@tree}), id=(#{x}) for this node."
   end
 
-  def add_on_tree(idd, tree)
-    tree.add_node(idd, self)
+  # Never call explicitly
+  def put_on_tree(idd, tree)
     @tree = tree
     @id = idd # Sync ID
     @depth = nil

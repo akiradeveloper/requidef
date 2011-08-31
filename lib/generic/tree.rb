@@ -73,14 +73,21 @@ class Tree
   def add_node(id, value)
     # The first node added is the root node.
     @root = id if @root == nil
-    @values[id] = value 
+    do_add_node(id)
+    update_value(id, value)
   end
 
+private
+  def do_add_node(id)
+    @values[id] = nil
+  end
+
+public
   def update_value(id, value)
-    # In current version, 
-    # update_value is just a wrapper of add_node.
-    # but in the future version, this may need modification.
-    add_node(id, value)
+    unless keys.include? id
+      raise ArgumentError
+    end
+    @values[id] = value 
   end
 
   def add_edge(from, to)
