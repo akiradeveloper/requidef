@@ -13,6 +13,10 @@ class Node
 
   attr_reader :tmp
 
+#  def to_s
+#    "depth:#{depth}, id:#{id}, tree:#{tree}, tmp:#{tmp}"
+#  end
+
   def depth
     if @depth == nil
       return get_depth_asking_tree
@@ -29,7 +33,7 @@ class Node
       @id = x
       return
     end
-    raise "Error can not call id=(#{x}) for this node."
+    raise "Error can not call tree=(#{@tree}), id=(#{x}) for this node."
   end
 
   def add_on_tree(idd, tree)
@@ -76,7 +80,7 @@ class Tag < Node
   end  
 
   def to_rd
-    "#{dashes(depth)} \##{@tag}\##{@text}"
+    "#{dashes(depth)} \##{@tag} = #{@text}"
   end
 end
 

@@ -1,39 +1,56 @@
-require_relative "../generic/tree"
+require_relative "../rdtree"
 
 class DOT
+
   def initialize(rdtree)
+    @tree = rdtree
+    @elems = []
   end
 
-  def write
+  def translate
+    @tree.rationalize! # CRAZY
+    add_node_line
+    add_link_line
+    add_link_to_children
+    describe
   end
-end
 
-class Tree
+private
 
-  def to_dot
-    rationalize! # CRAZY
-    elems = []
-    for i in 0...size
-      unless link_node?(i)
-        elems << dot_node_desc(i)
+  def add_node_line
+    @elems = []
+    @tree.keys.each do |id|
+      # TODO: Fix. node? is correct
+      unless @tree.link_node?(id)
+        @elems << dot_node_desc(id)
       end
     end
-    linkmap = mk_id2id
-    for i in 0...size
-      if link_node?(i)
-	to = linkmap[i]
-	from = parent(i)
-        elems << dot_edge_desc(from, to)
+  end
+
+  def add_link_line
+    linkmap = @tree.mk_id2id
+    @tree.keys.each do |id|
+      if @tree.link_node?(id)
+	to = linkmap[id]
+	from = parent(id)
+        @elems << dot_edge_desc(from, to)
 	next
       end
-      if leaf?(i)
+    end
+  end
+
+  def add_link_to_children
+    @tree.keys.each do |id|
+      if leaf?(id)
         next
       end
-      children(i).each do |child|
-        elems << dot_edge_desc(i, child) unless link_node?(child)
+      @tree.children(id).each do |child|
+        @elems << dot_edge_desc(id, child) unless link_node?(child)
       end
     end
-    
+  end
+
+  def describe
     # NOTE: The ratio of the output figure is 1 at default.
     # I/F to change the ratio is the future work.
 """
@@ -44,12 +61,16 @@ digraph graphname {
 """
   end
 
-private
   def dot_node_desc(id)
-    "v#{id} [label=\"#{value(id).to_desc}\"];" 
+    "v#{id} [label=\"#{@tree.value(id)}\"];" 
   end
 
   def dot_edge_desc(from, to)
     "v#{from} -> v#{to};"
   end
+end
+
+require_relative "../reader"
+if __FILE__ == $0
+  t = Reader.new( File.read("resources/sample.rd") ).translate
 end

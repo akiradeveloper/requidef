@@ -139,12 +139,3 @@ private
     id2tag
   end
 end
-
-require_relative "rd2rdtree"
-if __FILE__ == $0
-  t = rd2rdtree( File.read("resources/sample.rd"))
-  t.not_found_link2text!
-#  p t
-#  puts t.to_csv
-  puts t.to_dot
-end

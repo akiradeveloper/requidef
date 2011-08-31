@@ -22,6 +22,8 @@ rd -> dot, csv
 (Future release will support rd <-> tgf).
 
 For the usage, please see --usage
+
+Enjoy!
 EOF
   
 USAGE_MSG <<"EOF"
