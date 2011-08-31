@@ -1,5 +1,5 @@
-require_relative "generic/tree"
-require_relative "rdnode"
+require_relative "../generic/tree"
+require_relative "../rdnode"
 
 class RDNodes2RDTree
 

@@ -1,8 +1,10 @@
 require_relative "../rdtree"
 
+module To
+
 class DOT
 
-  def initialize(rdtree, option)
+  def initialize(rdtree, option=nil)
     @tree = rdtree
     @elems = []
     @option = option
@@ -71,7 +73,10 @@ digraph graphname {
   end
 end
 
-require_relative "../reader"
+end # end of module To
+
+require_relative "../from/rd"
 if __FILE__ == $0
-  t = Reader.new( File.read("resources/sample.rd") ).translate
+  t = From::RD.new( File.read("resources/sample.rd") ).translate
+  p To::DOT.new( t ).translate
 end

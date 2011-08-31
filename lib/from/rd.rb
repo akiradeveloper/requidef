@@ -1,7 +1,9 @@
 require_relative "rdnodes2rdtree"
 require_relative "rd2rdnodes"
 
-class Reader
+module From
+
+class RD
 
   def initialize(rd)
     @rd = rd
@@ -13,4 +15,11 @@ class Reader
     ).translate
   end
 
+end
+
+end # end of module From
+
+if __FILE__ == $0
+  t = From::RD.new( File.read("resources/sample.rd") ).translate
+  p t
 end

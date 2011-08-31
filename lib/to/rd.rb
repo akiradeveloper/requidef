@@ -12,8 +12,10 @@ class Tree
   end
 
 end
+
+module To
   
-class Writer
+class RD
 
   def initialize(rdtree, option)
     @tree = rdtree
@@ -34,6 +36,8 @@ private
     .delete_if { |x| x == @tree.root_id }
   end
 end
+
+end # end of module To
 
 require_relative "reader"
 if __FILE__ == $0

@@ -6,4 +6,4 @@ opt = Option.new
 
 inp = STDIN.read
 
-opt.run(inp)
+print opt.run(inp)

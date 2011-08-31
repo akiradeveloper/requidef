@@ -1,6 +1,5 @@
 require_relative "generic/matrix2csv"
 require_relative "generic/tree2matrix"
-require_relative "to/dot"
 
 class Tree
 

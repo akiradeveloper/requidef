@@ -57,10 +57,6 @@ class Link < Node
   end
   attr_reader :dest
 
-  def to_s
-    "(Link depth:#{@depth}, dest:#{@dest}, tmp:#{@tmp})"
-  end   
-
   def to_rd
     "#{dashes(depth)} >#{@dest}"
   end
@@ -75,10 +71,6 @@ class Tag < Node
   end
   attr_reader :tag
 
-  def to_s
-    "(Tag depth:#{depth}, tag:#{@tag}, text:#{@text}, tmp:#{@tmp})"
-  end  
-
   def to_rd
     "#{dashes(depth)} \##{@tag} = #{@text}"
   end
@@ -90,10 +82,6 @@ class Text < Node
     super(depth)
     @text = text
   end
-
-  def to_s
-    "(Text depth:#{depth}, text:#{@text}, tmp:#{@tmp})"
-  end   
 
   def to_rd
     "#{dashes(depth)} #{@text}"

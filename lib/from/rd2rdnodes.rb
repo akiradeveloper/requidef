@@ -1,4 +1,4 @@
-require_relative "rdnode"
+require_relative "../rdnode"
 
 class RDLine
 

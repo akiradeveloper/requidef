@@ -1,10 +1,13 @@
+require_relative "generic/range"
+
 class Option
 
-  VIEW_SUPPORTED_TRANSLATIONS = "view-supported-translations"
-  USAGE = "usage"
+  MAP_TAG_TO_LINK_IF_POSSIBLE = "map-tag-to-link-if-possible"
   MAP_TEXT_TO_TAG = "map-text-to-tag"
   MAP_UNLINKED_TAG_TO_TEXT = "map-unlinked-tag-to-text"
-  MAP_TAG_TO_LINK_IF_POSSIBLE = "map-tag-to-link-if-possible"
+  TO_CSV_INDEXING = "to-csv-indexing"
+  USAGE = "usage"
+  VIEW_SUPPORTED_TRANSLATIONS = "view-supported-translations"
 
   def initialize
     @map = {}
@@ -20,40 +23,43 @@ class Option
   def [](key)
     @map[key]
   end
+
+  def has?(key)
+    # TODO: Under Engineering.
+    # Use method to assert the key is not included.
+    @map[key] != nil
+  end
   
+  # Input -> String
   def run(inp)
     case rw
     when FROM
       case type
       when "mm"
-        From::MM.new(inp, option).translate
+        return To::RD.new(
+	  From::MM.new(inp, self).translate 
+	).tranlate
       when "html"
-        From::HTML.new(inp, option).translate
+        return From::HTML.new(inp, self).translate
       else
       end
     when TO
       rdtree = Reader.new(inp).translate
       case type
       when "dot"
-        To::DOT.new(rdtree, option).translate
+        return To::DOT.new(rdtree, self).translate
       when "csv"
-        To::CSV.new(rdtree, option).translate
+        return To::CSV.new(rdtree, self).translate
       else
       end
     when SELF
       rdtree = Reader.new(inp).translate
-      To::RD.new(rdtree, option).translate
+      To::RD.new(rdtree, self).translate
     else
     end
   end
 
-  def nil?(*keys)
-    keys.each do |key|
-      return false unless @map[key] == nil
-    end
-    return true
-  end
-  
+    
 private
 
   FROM = "from"
@@ -84,7 +90,19 @@ private
     end
   end
 
+  def nil?(*keys)
+    keys.each do |key|
+      return false if has?(key)
+    end
+    return true
+  end
+
   def setup
+
+    @opt.on("--" + TO_CSV_INDEXING + "=Range") do |v|
+      [TO_CSV_INDEXING] = v.to_range
+    end  
+   
     @opt.on("--" + VIEW_SUPPORTED_TRANSLATIONS) do |v|
       puts SUPPORTED_TRANSLATIONS_MSG
       exit

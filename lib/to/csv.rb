@@ -1,5 +1,7 @@
+module To
+
 class CSV
-  def initialize(rdtree, option)
+  def initialize(rdtree, option=nil)
     @tree = rdtree
     @option = option
   end 
@@ -10,3 +12,5 @@ class CSV
   class NodeWrite
   end
 end
+
+end # end of module To
