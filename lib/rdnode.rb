@@ -17,6 +17,10 @@ class Node
 #    "depth:#{depth}, id:#{id}, tree:#{tree}, tmp:#{tmp}"
 #  end
 
+  def of_type?(type)
+    self.class == type
+  end
+
   def depth
     if @depth == nil
       return get_depth_asking_tree
@@ -100,4 +104,6 @@ if __FILE__ == $0
   p n
   n.id = 100
   p n.id
+
+  p n.of_type?(Text)
 end

@@ -1,5 +1,4 @@
 require_relative "../rdtree"
-# require_relative "../generic/tree"
 
 class RDNodes2RDTree
 

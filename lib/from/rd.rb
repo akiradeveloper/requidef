@@ -4,7 +4,6 @@ require_relative "rd2rdnodes"
 module From
 
 class RD
-
   def initialize(rd)
     @rd = rd
   end
@@ -14,7 +13,6 @@ class RD
       RD2RDNodes.new(@rd).translate
     ).translate
   end
-
 end
 
 end # end of module From
