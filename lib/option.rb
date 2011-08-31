@@ -1,5 +1,11 @@
 class Option
 
+  VIEW_SUPPORTED_TRANSLATIONS = "view-supported-translations"
+  USAGE = "usage"
+  MAP_TEXT_TO_TAG = "map-text-to-tag"
+  MAP_UNLINKED_TAG_TO_TEXT = "map-unlinked-tag-to-text"
+  MAP_TAG_TO_LINK_IF_POSSIBLE = "map-tag-to-link-if-possible"
+
   def initialize
     @map = {}
     @opt = OptionParser.new
@@ -50,11 +56,12 @@ class Option
   
 private
 
-  FROM = 0
-  TO = 1
-  SELF = 2
+  FROM = "from"
+  TO = "to"
+  SELF = "self"
+
   def rw
-    if nil?("from", "to")
+    if nil?(FROM, TO)
       return SELF
    
     elsif nil?("from")
@@ -68,9 +75,9 @@ private
   def type
     case rw
     when FROM
-      @map["from"]
+      @map[FROM]
     when TO
-      @map["to"]
+      @map[TO]
     when SELF
       "rd"
     else
@@ -78,37 +85,33 @@ private
   end
 
   def setup
-    @opt.on("--view-supported-translations") do |v|
+    @opt.on("--" + VIEW_SUPPORTED_TRANSLATIONS) do |v|
       puts SUPPORTED_TRANSLATIONS_MSG
       exit
     end
     
-    @opt.on("--usage") do |v|
+    @opt.on("--" + USAGE) do |v|
       puts USAGE_MSG
       exit
     end
 
-    @opt.on("--to-csv-indexing Range") do |v|
-      raise  
+    @opt.on("--" + MAP_TEXT_TO_TAG) do |v|
+      [MAP_TEXT_TO_TAG] = true
     end
     
-    @opt.on("--map-unlinked-tag-to-text") do |v|
-      raise
+    @opt.on("--" + MAP_UNLINKED_TAG_TO_TEXT) do |v|
+      [MAP_UNLINKED_TAG_TO_TEXT] = true
     end
     
-    @opt.on("--map-text-to-tag") do |v|
-      raise
+    @opt.on("--" + MAP_TAG_TO_LINK_IF_POSSIBLE) do |v|
+      [MAP_TAG_TO_LINK_IF_POSSIBLE] = true
     end
 
-    @opt.on("--map-tag-to-link-if-possible") do |v|
-      raise
-    end
-
-    @opt.on("--to=ToType") do |v| 
+    @opt.on("--#{TO}=ToType") do |v| 
       @map["to"] = v
     end
     
-    @opt.on("--from=FromType") do |v|
+    @opt.on("--#{FROM}=FromType") do |v|
       @map["from"] = v
     end
   end

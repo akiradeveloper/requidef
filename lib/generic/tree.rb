@@ -27,9 +27,10 @@ class Tree
   end
 
   # TODO: Should be removed.
-  def values
-    @values.values
-  end
+  # Commented out
+#  def values
+#    @values.values
+#  end
 
   def size
     @values.size

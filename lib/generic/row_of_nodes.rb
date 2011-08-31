@@ -11,13 +11,7 @@ class RowOfNodes
     @array = initmap(tree)
   end 
 
-  def initmap(tree)
-    h = {}
-    tree.keys.each do |id|
-      h[id] = [0,0]
-    end
-    return h
-  end
+
 
   def row_of_nodes
     n = @tree.root_id
@@ -32,8 +26,14 @@ class RowOfNodes
 
 private
 
-  # NOTE: under id?
-  # if so, refactor name
+  def initmap(tree)
+    h = {}
+    tree.keys.each do |id|
+      h[id] = [0,0]
+    end
+    return h
+  end
+
   def set_row_of_nodes(id)
     if @tree.leaf? id
       @array[id][1] = 1
