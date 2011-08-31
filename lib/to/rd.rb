@@ -15,8 +15,9 @@ end
   
 class Writer
 
-  def initialize(rdtree)
+  def initialize(rdtree, option)
     @tree = rdtree
+    @option = option
   end
 
   def translate

@@ -4,41 +4,79 @@ class Option
     @map = {}
     @opt = OptionParser.new
     setup
+    ARGV.parse!
   end
 
   def []=(key, value)
     @map[key] = value
   end
+
+  def [](key)
+    @map[key]
+  end
   
   def run(inp)
+    case rw
+    when FROM
+      case type
+      when "mm"
+        From::MM.new(inp, option).translate
+      when "html"
+        From::HTML.new(inp, option).translate
+      else
+      end
+    when TO
+      rdtree = Reader.new(inp).translate
+      case type
+      when "dot"
+        To::DOT.new(rdtree, option).translate
+      when "csv"
+        To::CSV.new(rdtree, option).translate
+      else
+      end
+    when SELF
+      rdtree = Reader.new(inp).translate
+      To::RD.new(rdtree, option).translate
+    else
+    end
   end
 
+  def nil?(*keys)
+    keys.each do |key|
+      return false unless @map[key] == nil
+    end
+    return true
+  end
+  
 private
 
-SUPPORTED_TRANSLATIONS_MSG <<"EOF"
-Supported Translations:
-mm, html -> rd
-rd -> dot, csv
-(Future release will support rd <-> tgf).
+  FROM = 0
+  TO = 1
+  SELF = 2
+  def rw
+    if nil?("from", "to")
+      return SELF
+   
+    elsif nil?("from")
+      return TO
+    
+    else
+      return FROM
+    end
+  end
 
-For the usage, please see --usage
+  def type
+    case rw
+    when FROM
+      @map["from"]
+    when TO
+      @map["to"]
+    when SELF
+      "rd"
+    else
+    end
+  end
 
-Enjoy!
-EOF
-  
-USAGE_MSG <<"EOF"
-Usage:
-requidef supports translations from one file format to another one.
-You usually first create standard input and pipe it to requidef command and continue piping.
-
-Clear Example,
-cat input.mm | requidef --from=mm --to=rd | requidef --from=rd --to=dot > output.dot
-  
-For more details, see help.
-  
-Enjoy!
-EOF
-  
   def setup
     @opt.on("--view-supported-translations") do |v|
       puts SUPPORTED_TRANSLATIONS_MSG
@@ -74,41 +112,30 @@ EOF
       @map["from"] = v
     end
   end
+
+
+SUPPORTED_TRANSLATIONS_MSG <<"EOF"
+Supported Translations:
+mm, html -> rd
+rd -> dot, csv
+(Future release will support rd <-> tgf).
+
+For the usage, please see --usage
+
+Enjoy!
+EOF
   
-  def type
-  end
+USAGE_MSG <<"EOF"
+Usage:
+requidef supports translations from one file format to another one.
+You usually first create standard input and pipe it to requidef command and continue piping.
 
-  def nil?(*keys)
-    keys.each do |key|
-      return false unless @map[key] == nil
-    end
-    return true
-  end
-
-  def run_self
-  end
-
-  def run_to
-  end
-
-  def run_from
-  end
-
-  FROM = 0
-  TO = 1
-  SELF = 2
-  def rw
-    if nil?("from", "to")
-      return SELF
-   
-    elsif nil?("from")
-      return TO
-    
-    else
-      return FROM
-    end
-  end
-
-  def validate
-  end
+Clear Example,
+cat input.mm | requidef --from=mm --to=rd | requidef --from=rd --to=dot > output.dot
+  
+For more details, see help.
+  
+Enjoy!
+EOF
+  
 end

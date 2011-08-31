@@ -2,9 +2,10 @@ require_relative "../rdtree"
 
 class DOT
 
-  def initialize(rdtree)
+  def initialize(rdtree, option)
     @tree = rdtree
     @elems = []
+    @option = option
   end
 
   def translate
