@@ -54,8 +54,9 @@ class Option
       end
     when SELF
       rdtree = From::RD.new(inp).translate
-      To::RD.new(rdtree, self).translate
+      return To::RD.new(rdtree, self).translate
     else
+      raise ArgumentError
     end
   end
 
@@ -100,7 +101,7 @@ private
   def setup
 
     @opt.on("--" + TO_CSV_INDEXING + "=Range") do |v|
-      [TO_CSV_INDEXING] = v.to_range
+      [TO_CSV_INDEXING] = str2range( v )
     end  
    
     @opt.on("--" + VIEW_SUPPORTED_TRANSLATIONS) do |v|

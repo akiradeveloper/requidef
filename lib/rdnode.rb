@@ -4,18 +4,10 @@ class Node
     @tmp = {}
     @depth = depth
     @tree = nil
-    
-    # NOTE: What is this magic number 100?
-    # I guess for some debugging and turned it to nil.
-    # @id = 100 
-    @id # = nil 
+    @id = nil
   end
 
   attr_reader :tmp
-
-#  def to_s
-#    "depth:#{depth}, id:#{id}, tree:#{tree}, tmp:#{tmp}"
-#  end
 
   def of_type?(type)
     self.class == type

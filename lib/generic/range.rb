@@ -6,12 +6,6 @@ def str2range(s)
   Range.new(from, to)
 end
 
-class String
-  def to_range
-    str2range(self)
-  end
-end
-
 if __FILE__ == $0
   str2range("1..10").each do |i|
     print i, " " 

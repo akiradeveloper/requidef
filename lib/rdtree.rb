@@ -13,12 +13,6 @@ class RDTree < Tree
     Rationalize.new(self).run!
   end
 
-  # use value(id).of_type?(Link) instead
-  def link_node?(id)
-    n = value(id)
-    n.of_type?(Link)
-  end
-
   def get_statistic
     Statistic.new(self)
   end
@@ -58,11 +52,15 @@ class RDTree < Tree
     end         
    
   public
-    def get_dest_node(id)
+    def get_dest_id(id)
       tag = @tree.value(id).tag
       id = @tag_id[tag] 
       raise ArgumentError unless id.size == 1
       return id
+    end
+
+    def has_dest?(id)
+      
     end
 
     def list_tag_nodes
@@ -77,6 +75,12 @@ class RDTree < Tree
       @text_nodes
     end
 
+    def list_link_nodes_with_no_dest
+      return list_link_nodes.delete_if do |id|
+        has_dest?( id )
+      end
+    end
+
     def no_ambigous_tag?
       @tag_id.keys.each do |tag|
         values = @tag_id[tag]
@@ -84,14 +88,14 @@ class RDTree < Tree
       end
     end
 
-    def all_linknode_dest_found?
+    def all_link_nodes_dest_found?
       dests_cands = @tag_id.keys
-      @list_nodes.each do |id|
+      @link_nodes.each do |id|
         dest = @tree.value(id)
-	return false unless dests_cands.includes?( dest )
+	return false unless dests_cands.include?( dest )
       end
     end
-  end
+  end # end of class Statistic
 
 private
 
@@ -102,12 +106,12 @@ private
     
     def run!
       stat = @tree.get_statistic
-      if stat.all_linknodes_dest_found?
+      if stat.all_link_nodes_dest_found?
         return 
       end
-      stat.list_linknode_with_no_dest.each do |id|
+      stat.list_link_nodes_with_no_dest.each do |id|
         n = @tree.value(id)
-        @tree.update( id, textnode(n) )
+        @tree.update_value( id, textnode(n) )
       end
     end
   private
@@ -116,38 +120,6 @@ private
         linknode.depth,
 	"! " + linknode.dest )
     end
-  end
-
-  def not_found_link2text!
-    list_link_nodes.each do |id|
-      if can_not_find_tag(id)
-        modify_link2text(id)
-      end
-    end
-  end
-
-  def modify_link2text(id)
-    linknode = value(id)
-    textnode = link2text(linknode)
-    update_value(id, textnode)
-  end
-
-  # NOTE: Maybe Under-Engineering.
-  # id of node, tmp field are not copied but
-  # this time, I decided not because I considered unnessessary.
-  def link2text(linknode)
-    depth = linknode.depth
-    text = linknode.dest
-    Text.new(depth, text)
-  end
-
-  def list_link_nodes
-    mk_id2tag.keys
-  end
-
-  def can_not_find_tag(id)
-    tag = mk_id2tag[id]
-    ! mk_tag2id.include? tag
   end
 end
 

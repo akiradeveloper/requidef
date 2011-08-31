@@ -8,10 +8,12 @@ class DOT
     @tree = rdtree
     @elems = []
     @option = option
+    @stat = nil
   end
 
   def translate
     @tree.rationalize! # CRAZY
+    @stat = @tree.get_statistic
     add_node_line
     add_link_line
     add_link_to_children
@@ -20,21 +22,23 @@ class DOT
 
 private
 
+  def link_node?(id)
+    @tree.value(id).of_type?(Link)
+  end
+
   def add_node_line
     @elems = []
     @tree.keys.each do |id|
-      # TODO: Fix. node? is correct
-      unless @tree.link_node?(id)
+      unless link_node?(id)
         @elems << dot_node_desc(id)
       end
     end
   end
 
   def add_link_line
-    linkmap = @tree.mk_id2id
     @tree.keys.each do |id|
-      if @tree.link_node?(id)
-	to = linkmap[id]
+      if link_node?(id)
+	to = @stat.get_dest_id(id)
 	from = parent(id)
         @elems << dot_edge_desc(from, to)
 	next
@@ -44,7 +48,7 @@ private
 
   def add_link_to_children
     @tree.keys.each do |id|
-      if leaf?(id)
+      if @tree.leaf?(id)
         next
       end
       @tree.children(id).each do |child|
@@ -59,7 +63,7 @@ private
 """
 digraph graphname {
   graph [ratio = 1]
-  #{elems.join("\n  ")}
+  #{@elems.join("\n  ")}
 }
 """
   end
@@ -78,5 +82,5 @@ end # end of module To
 require_relative "../from/rd"
 if __FILE__ == $0
   t = From::RD.new( File.read("resources/sample.rd") ).translate
-  p To::DOT.new( t ).translate
+  puts To::DOT.new( t ).translate
 end
